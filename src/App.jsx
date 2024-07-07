@@ -1,24 +1,24 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Login from './routes/auth/login/Login';
 import Register from './routes/auth/register/Register';
 import Home from './routes/home/Home';
-// import Auth from './routes/auth/Auth';
+import { ToastContainer } from 'react-toastify';
+import Dashboard from './routes/dashboard/Dashboard';
+import 'rsuite/Loader/styles/index.css';
 
 function App() {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <>
-      {!pathname.includes('/login') && !pathname.includes('/register') && <Navbar />}
+      <ToastContainer />
+      {!pathname.includes('/login') && !pathname.includes('/register') && !pathname.includes('/dashboard') && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/auth" element={<Auth />}> */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        {/* </Route> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </>
   );

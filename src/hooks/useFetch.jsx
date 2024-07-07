@@ -10,8 +10,8 @@ export const useFetch = (url) => {
     const dataLoad = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(url);
-        setData(res.data.data);
+        const res = await axios.post(url);
+        setData(res);
       } catch (err) {
         setError(err);
       } finally {
@@ -20,6 +20,8 @@ export const useFetch = (url) => {
     };
     dataLoad();
   }, [url]);
+
+  console.log(data);
 
   return { data, loading, error };
 };
