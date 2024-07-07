@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Validation } from "../../../components/validition/Validation";
 import axios from '../../../api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from 'rsuite';
+import AppContext from "../../../context/store";
 
 const Login = () => {
+  const [state, dispatch] = useContext(AppContext)
   const navigate = useNavigate();
   const [changeBtn, setChangeBtn] = useState(false);
   const [values, setValues] = useState({
@@ -15,7 +17,7 @@ const Login = () => {
   });
 
   const [errors, setErrors] = useState({});
-  
+
   const handleInput = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -40,7 +42,9 @@ const Login = () => {
             'Content-Type': 'application/json'
           }
         });
-        console.log(res);
+
+        dispatch({type: 'LOGIN_USER', user: res.data.access_token})
+
         if (res.status === 201) {
           toast.success("Successfully logged in!!!");
           navigate('/dashboard');

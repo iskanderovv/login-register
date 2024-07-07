@@ -43,10 +43,10 @@ const Register = () => {
           toast.success("Successfully registered!!!");
           navigate('/login');
         } else {
-          throw new Error("Something went wrong");
+          throw new Error("Something went wrong!!!");
         }
       } catch (error) {
-        toast.error("Unsuccessfully registered");
+        toast.error("Failed to Register!!!");
       } finally {
         setChangeBtn(false);
       }

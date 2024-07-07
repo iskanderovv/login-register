@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer className='m-4' />
       {!pathname.includes('/login') && !pathname.includes('/register') && !pathname.includes('/dashboard') && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
