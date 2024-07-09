@@ -38,7 +38,7 @@ const Register = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         setChangeBtn(true);
-        const res = await axios.post('/users/', { ...values });
+        const res = await axios.post('/users', { ...values });
         if (res.status === 201) {
           toast.success("Successfully registered!!!");
           navigate('/login');
